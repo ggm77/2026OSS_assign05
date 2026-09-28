@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        계산기
+    </h1>
+    <br>
+
+    <input id="val1" type="text" size="4">
+    <input id="val2" type="text" size="4">
+    <button id="plusBtn" onclick="add()">+</button>
+    <input id="result" type="text" size="4">
+
+    <script>
+        function add() {
+            let val1 = document.querySelector("#val1").value;
+            let val2 = document.querySelector("#val2").value;
+
+            document.querySelector("#result").value = Number(val1)+Number(val2);
+        }
+    </script>
+
+</body>
+</html>
