@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        h1 {
+            color: rgb(107, 208, 104);
+        }
+    </style>
+
+    <script>
+        window.addEventListener("load", function() {
+            document.querySelector("#clickBtn2").innerText = "clicked";
+        })
+    </script>
 </head>
 <body>
+
+    <!-- 클릭버튼 실습 -->
+    <h3>inner js</h3>
+    <div id="clickBtn" onclick="clickMe()">Click Me</div>
+
+    <!-- 클릭버튼 실습 -->
+    <h3>internal js</h3>
+    <div id="clickBtn2" onclick="clickMe()">Click Me</div>
+
+    <br>
+    <!-- ---------------------------------------------------------- -->
+
+    <!-- 계산기 실습 -->
+
     <h1>
         계산기
     </h1>
@@ -17,6 +43,17 @@
     <input id="result" type="text" size="4">
 
     <script>
+
+        function clickMe() {
+
+            const btn = document.querySelector("#clickBtn");
+
+            btn.innerHTML = "<h1>wow</h1>";
+        }
+
+
+        // ---------------------------
+
         function add() {
             let val1 = document.querySelector("#val1").value;
             let val2 = document.querySelector("#val2").value;
