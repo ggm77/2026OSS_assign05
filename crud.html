@@ -138,6 +138,8 @@
                     span.innerText = item.id+" | "+item.title+" | "+item.content+" | "+item.category+" | "+item.createdAt+" | ";
                     updateBtn.innerText = "수정";
                     deleteBtn.innerText = "삭제";
+                    updateBtn.className = "updateBtn";
+                    deleteBtn.className = "deleteBtn";
 
                     updateBtn.addEventListener("click", () => update(item));
                     deleteBtn.addEventListener("click", () => deleteItem(item));
@@ -156,8 +158,106 @@
 
         })
     </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        #container {
+            width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        form span {
+            display: inline-block;
+            width: 80px;
+        }
+
+        input {
+            width: 250px;
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+
+        button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #submitBtn {
+            padding: 8px 24px;
+            background-color: #4a90e2;
+        }
+
+        #submitBtn:hover {
+            background-color: #357abd;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        li:hover {
+            background-color: #f0f6ff;
+        }
+
+        li span {
+            margin-right: 10px;
+        }
+
+        .updateBtn {
+            background-color: #5cb85c;
+        }
+
+        .updateBtn:hover {
+            background-color: #449d44;
+        }
+
+        .deleteBtn {
+            background-color: #d9534f;
+        }
+
+        .deleteBtn:hover {
+            background-color: #c9302c;
+        }
+    </style>
 </head>
 <body>
+
+    <div id="container">
+
+    <h1>메모 관리</h1>
 
     <form>
         <span>제목</span>
@@ -175,10 +275,12 @@
         <button id="submitBtn" type="button">추가</button>
     </form>
 
-    <p>--------------------------------------------</p>
+    <hr>
 
     <p style="white-space: pre">ID   제목      본문                카테고리      생성일</p>
 
     <ul id="list"></ul>
+
+    </div>
 </body>
 </html>
