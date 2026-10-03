@@ -7,29 +7,81 @@
 
     <script>
         window.addEventListener("load", function () {
+
+            let dataIndex = 3;
             let data = [
                 {
                     "id":0,
                     "title":"오늘 할일",
                     "content":"OSS 과제, 웹서개 과제",
                     "category":"TODO",
-                    "createdAt":"2026.10.03"
+                    "createdAt":"2026-10-03"
                 },
                 {
                     "id":1,
                     "title":"이번 주 약속",
                     "content":"금요일 팀플 회의, 토요일 동아리 모임",
                     "category":"SCHEDULE",
-                    "createdAt":"2026.10.01"
+                    "createdAt":"2026-10-01"
                 },
                 {
                     "id":2,
                     "title":"장보기 목록",
                     "content":"우유, 계란, 식빵, 바나나",
                     "category":"BUY",
-                    "createdAt":"2026.09.25"
+                    "createdAt":"2026-09-25"
                 }
             ]
+
+            
+            let title = document.querySelector("#title");
+            let content = document.querySelector("#content");
+            let category = document.querySelector("#category");
+            let createdAt = document.querySelector("#createdAt");
+            let submitBtn = document.querySelector("#submitBtn");
+
+            function addItem() {
+                if (title.value.trim() === "") return;
+                if (content.value.trim() === "") return;
+                if (category.value.trim() === "") return;
+                if (createdAt.value === "") return;
+
+                data.push({
+                    id: dataIndex,
+                    title: title.value.trim(),
+                    content: content.value.trim(),
+                    category: category.value.trim(),
+                    createdAt: createdAt.value
+                })
+                dataIndex += 1;
+                
+                loadData();
+            }
+
+            function loadData() {
+
+                list.replaceChildren();
+
+                data.forEach((item) => {
+                    let li = document.createElement("li");
+                    let span = document.createElement("span");
+                    let updateBtn = document.createElement("button");
+                    let deleteBtn = document.createElement("button");
+
+                    span.innerText = item.id+" | "+item.title+" | "+item.content+" | "+item.category+" | "+item.createdAt+" | ";
+                    updateBtn.innerText = "수정";
+                    deleteBtn.innerText = "삭제";
+
+                    li.appendChild(span);
+                    li.appendChild(updateBtn);
+                    li.appendChild(deleteBtn);
+
+                    list.appendChild(li);
+                })
+            }
+
+            submitBtn.addEventListener("click", addItem);
+
         })
     </script>
 </head>
@@ -48,7 +100,7 @@
         <span>생성일</span>
         <input id="createdAt" type="date">
         <br>
-        <button id="submitBtn">추가</button>
+        <button id="submitBtn" type="button">추가</button>
     </form>
 
     <p>--------------------------------------------</p>
