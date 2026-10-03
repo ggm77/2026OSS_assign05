@@ -55,10 +55,10 @@
                 })
                 dataIndex += 1;
                 
-                loadData();
+                render();
             }
 
-            function loadData() {
+            function render() {
 
                 list.replaceChildren();
 
@@ -80,7 +80,7 @@
                 })
             }
 
-            loadData();
+            render();
 
             submitBtn.addEventListener("click", addItem);
 
