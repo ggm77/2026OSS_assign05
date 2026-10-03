@@ -84,6 +84,21 @@
                 editingId = item.id;
             }
 
+            function deleteItem(item) {
+
+                if (!confirm("삭제하시겠습니까?")) return;
+
+                data = data.filter((d) => d.id !== item.id);
+
+                editingId = null;
+                title.value = "";
+                content.value = "";
+                category.value = "";
+                createdAt.value = "";
+
+                render();
+            }
+
             function render() {
 
                 list.replaceChildren();
@@ -99,6 +114,7 @@
                     deleteBtn.innerText = "삭제";
 
                     updateBtn.addEventListener("click", () => update(item));
+                    deleteBtn.addEventListener("click", () => deleteItem(item));
 
                     li.appendChild(span);
                     li.appendChild(updateBtn);
