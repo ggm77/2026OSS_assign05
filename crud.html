@@ -8,6 +8,7 @@
     <script>
         window.addEventListener("load", function () {
 
+            let editingId = null;
             let dataIndex = 3;
             let data = [
                 {
@@ -46,14 +47,25 @@
                 if (category.value.trim() === "") return;
                 if (createdAt.value === "") return;
 
-                data.push({
-                    id: dataIndex,
-                    title: title.value.trim(),
-                    content: content.value.trim(),
-                    category: category.value.trim(),
-                    createdAt: createdAt.value
-                })
-                dataIndex += 1;
+                if (editingId === null) {
+                    data.push({
+                        id: dataIndex,
+                        title: title.value.trim(),
+                        content: content.value.trim(),
+                        category: category.value.trim(),
+                        createdAt: createdAt.value
+                    })
+                    dataIndex += 1;
+                } else {
+                    let target = data.find((d) => d.id === editingId);
+
+                    target.title = title.value.trim();
+                    target.content = content.value.trim();
+                    target.category = category.value.trim();
+                    target.createdAt = createdAt.value.trim();
+
+                    editingId = null;
+                }
 
                 title.value = "";
                 content.value = "";
@@ -61,6 +73,15 @@
                 createdAt.value = "";
                 
                 render();
+            }
+
+            function update(item) {
+                title.value = item.title;
+                content.value = item.content;
+                category.value = item.category;
+                createdAt.value = item.createdAt;
+
+                editingId = item.id;
             }
 
             function render() {
@@ -76,6 +97,8 @@
                     span.innerText = item.id+" | "+item.title+" | "+item.content+" | "+item.category+" | "+item.createdAt+" | ";
                     updateBtn.innerText = "수정";
                     deleteBtn.innerText = "삭제";
+
+                    updateBtn.addEventListener("click", () => update(item));
 
                     li.appendChild(span);
                     li.appendChild(updateBtn);
